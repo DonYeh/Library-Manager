@@ -1,0 +1,26 @@
+extends ./layout
+block content
+    body
+        h1 Checked Out Books
+        p
+            a.button(href="/all_books/new_book") Create New Book
+        include ./partials/_book_nav.pug
+        table
+            thead
+                tr
+                    th Title
+                    th Author
+                    th Genre
+                    th Year Released
+            tbody
+            each loan in loans
+                tr
+                    td
+                        a(href="/all_books/book_detail/" + loan.book_id)
+                            =loan.Book.title
+                    td
+                        =loan.Book.author
+                    td
+                        =loan.Book.genre
+                    td
+                        =loan.Book.first_published

@@ -1,0 +1,27 @@
+extends ./layout
+block content
+    body
+        h1 Books
+        p
+            a.button(href="/all_books/new_book") Create New Book
+        include ./partials/_book_nav.pug
+        table
+            thead
+                tr
+                    th Title
+                    th Author
+                    th Genre
+                    th Year Released
+            tbody
+                each book in books
+                    tr
+                        td
+                            a(href="/all_books/book_detail/" + book.id)
+                                =book.title
+                        td
+                            =book.author
+                        td
+                            =book.genre
+                        td
+                            =book.first_published
+
