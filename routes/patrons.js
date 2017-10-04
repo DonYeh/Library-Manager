@@ -8,33 +8,62 @@ var Loan = require("../models").Loan;
 var moment = require('moment');
 
 
-// GET /patrons - List All Patrons
 router.get('/', function(req, res, next) {
-	Patron.findAll().then(function(patrons) {
-    	res.render('all_patrons', {patrons: patrons});
-	});
-});
-
-// GET /patrons/new - New Patron
-router.get('/new_patron', function(req, res, next) {
-	res.render('new_patron', {patron : Patron.build()});
-});
-
-// POST /patrons - Create New Patron
-router.post('/new', function(req, res, next) {
-	Patron.create(req.body).then(function(patron) {
-		res.redirect('/all_patrons');
-	}).catch(function(err) {
-		if(err.name === "SequelizeValidationError") {
-			res.render('new_patron', {
-				patron: Patron.build(req.body),
-				errors: err.errors
-			});
-		} else {
-			  throw err;
+	Patron.findAll().then(function(patronlistings){
+	  if (patronlistings) {
+		res.render('all_patrons', {
+		  title: 'Patrons',
+		  patrons: patronlistings
+		});
+	  } else {
+		  err.status == 404;
+		  return next(err);
 		}
+	}).catch(function(err){
+	  return next(err);
 	});
 });
+
+
+router.get('/new_patron', function(req, res, next) {
+	res.render('new_patron', {
+	  title: 'Create New Patron'
+	});
+	if (err) return next(err);
+  });
+
+
+// POST new patron
+router.post('/new_patron', function(req, res, next) {
+	Patron.create(req.body)
+	.then(function(patron){
+	  res.redirect('/all_patrons/');
+	}).catch(function(err){
+	  // if there's a validation error, re-render page with errors
+	  if (err.name == 'SequelizeValidationError') {
+  
+		// loop over err messages
+		var errMessages = [];
+		for (var i=0; i<err.errors.length; i++) {
+		  errMessages[i] = err.errors[i].message;
+		}
+  
+		// maintain the completed fields of the form
+		res.render('new_patron', {
+		  title: 'Create New Patron',
+		  patronFirstName: req.body.first_name,
+		  patronLastName: req.body.last_name,
+		  patronAddress: req.body.address,
+		  patronEmail: req.body.email,
+		  patronLibraryId: req.body.library_id,
+		  patronZipCode: req.body.zip_code,
+		  errors: errMessages
+		}); // end render
+	  } else {
+				return next(err);
+	  } // end else
+	}); // ends catch
+}); // ends post
 
 // GET /patrons/:id - Individual Patron detail and Loan History
 router.get('/patron_detail/:id', function(req, res) {
@@ -55,9 +84,8 @@ router.get('/patron_detail/:id', function(req, res) {
 		}).catch(function(err) {
     		res.sendStatus(500);
   		});
-		
-	});
-});
+	}); // end then
+}); // end get
 
 // PUT /patrons/:id - Update Patron
 router.put('/patron_detail/:id', function(req, res, next) {
@@ -94,8 +122,8 @@ router.put('/patron_detail/:id', function(req, res, next) {
 		} else {
 			throw err;
 		} // End If
-	});
-});
+	}); // end catch
+}); // end put
 
 
 module.exports = router;

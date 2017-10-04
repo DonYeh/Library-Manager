@@ -1,0 +1,12 @@
+block content
+
+    if(errors)
+        h2.error Oooops an error has occured, one or more of your fields is invalid!
+        ul.error
+            each error in errors
+                li=error.message
+    
+
+
+
+

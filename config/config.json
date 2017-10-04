@@ -1,10 +1,7 @@
 {
   "development": {
     "storage": "library.db",
-    "dialect": "sqlite",
-    "define": {
-      "timestamps": false
-    }
+    "dialect": "sqlite"
   },
   "test": {
     "storage": "library.db",
