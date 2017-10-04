@@ -1,9 +1,8 @@
 extends ./layout
 block content
     body
-        h1 Book:&nbsp; 
-            =book.title
-        form(action="/all_books/book_detail/" + book.id + "?_method=PUT" , method="POST")
+        h1 Book: #{book.title}
+        form(action="/all_books/book_detail/" + book.id + "?_method=PUT" , method="post")
             p
                 label.for("title") Title
                 input(id="title", type="text", value=book.title, name="title")
@@ -18,6 +17,10 @@ block content
                 input(id="first_published", type="text", value=book.first_published, name="first_published")
             p
                 input(type='submit', value='Update')
+        
+        if errors
+            include ./error
+        
         h2 Loan History
         table
             thead
@@ -32,10 +35,10 @@ block content
                 each loan in loans
                     tr
                         td
-                            a(href="/all_books/book_detail/" + loan.book_id)
-                                =loan.Book.title
+                            a(href="/all_books/book_detail/" + book.id)
+                                =book.title
                         td
-                            a(href="/all_patrons/patron_detail/" + loan.patron_id)
+                            a(href="/all_patrons/patron_detail/" + loan.Patron.id)
                                 =loan.Patron.first_name + " " + loan.Patron.last_name
                         td
                             =loan.loaned_on
@@ -45,5 +48,7 @@ block content
                             =loan.returned_on
                         td
                             if !loan.returned_on
-                                a.button(href="/all_books/return_book/" + loan.book_id) Return Book
+                                a.button(href="/all_books/return_book/" + loan.id) Return Book
+
+
 

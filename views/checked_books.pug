@@ -16,7 +16,7 @@ block content
             each loan in loans
                 tr
                     td
-                        a(href="/all_books/book_detail/" + loan.book_id)
+                        a(href='/all_books/book_detail/' + loan.Book.id) 
                             =loan.Book.title
                     td
                         =loan.Book.author

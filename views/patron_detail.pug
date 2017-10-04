@@ -3,7 +3,7 @@ block content
     body
         h1 Patron:&nbsp;
             =patron.first_name + " " + patron.last_name
-        form(action="/all_patrons/patron_detail/" + patron.id + "?_method=PUT" , method="POST")
+        form(action="/all_patrons/patron_detail/" + patron.id + "?_method=PUT" , method="post")
             p
                 label.for("first_name") First Name
                 input(id="first_name", type="text", value=patron.first_name, name="first_name")
@@ -24,6 +24,8 @@ block content
                 input(id="zip_code", type="text", value=patron.zip_code, name="zip_code")
             p
                 input(type="submit", value="Update")
+        if errors
+            include ./error
         h2 Loan History
         table
             thead
@@ -38,7 +40,7 @@ block content
                 each loan in loans
                     tr
                         td
-                            a(href="/all_books/book_detail/" + loan.book_id)
+                            a(href="/all_books/book_detail/" + loan.Book.id)
                                 =loan.Book.title
                         td
                             a(href="/all_patrons/patron_detail/" + patron.id)
@@ -51,4 +53,4 @@ block content
                             =loan.returned_on
                         td
                             if !loan.returned_on
-                                a.button(href="/all_books/return_book/" + loan.book_id) Return Book
+                                a.button(href="/all_books/return_book/" + loan.id) Return Book
