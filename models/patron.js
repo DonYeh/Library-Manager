@@ -35,7 +35,7 @@ module.exports = function(sequelize, DataTypes) {
           msg: "Email address is required"
         },
         isEmail: {
-          msg: "A valid email address is required"
+          msg: "Please enter a valid email"
         }
       }
     },
