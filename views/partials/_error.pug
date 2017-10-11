@@ -1,0 +1,11 @@
+//- h2.error Oooopsz!
+//- ul.error
+//-     for error in errors
+//-         li=error.message
+
+if(errors)
+  h2 Error found!
+  ul
+    each error in errors
+      li
+        =error.message

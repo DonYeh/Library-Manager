@@ -25,3 +25,6 @@ block content
                             =patron.library_id
                         td
                             =patron.zip_code
+
+        if errors
+            include ./error

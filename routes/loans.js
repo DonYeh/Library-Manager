@@ -95,10 +95,9 @@ router.post('/new', function(req, res, next) {
   Loan.create(req.body).then(function(loan){
     res.redirect('/all_loans');
   }).catch(function(err){
-    // if validation error, re-render page with error messages
     if (err.name === 'SequelizeValidationError') {
 
-      // loop over err messages
+      // loop over array of err messages
       var errMessages = [];
       for (var i=0; i<err.errors.length; i++) {
         errMessages[i] = err.errors[i].message;
@@ -127,9 +126,8 @@ router.post('/new', function(req, res, next) {
         }) // ends then
       ); // ends then
     } else {
-      // if it's not a validation error, send to middleware error handler
       return next(err);
-    }
+    } // end else
   }); // ends catch
 }); // ends POST
 

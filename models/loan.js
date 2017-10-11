@@ -15,14 +15,20 @@ module.exports = function(sequelize, DataTypes) {
     loaned_on: {
       type: DataTypes.DATEONLY,
       validate: {
+        notEmpty: {
+          msg: 'Loaned On Date is required.'
+        },
         isDate: {
-          msg: "Please enter a loaned on date"
+          msg: 'Loaned On Date must be a valid date in the format; YYYY-MM-DD'
         }
       }
     },
     return_by: {
       type: DataTypes.DATEONLY,
       validate: {
+        notEmpty: {
+          msg: 'Return By Date is required.'
+        },
         isDate: {
           msg: "Please enter a return by date"
         }
