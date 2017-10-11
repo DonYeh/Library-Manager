@@ -94,11 +94,7 @@ router.put('/return_book/:id', function(req, res, next) {
     res.redirect('/all_loans/');
   }).catch(function(err){
     // if validation error, re-render page with error messages
-<<<<<<< HEAD
     if (err.name === 'SequelizeValidationError') {
-=======
-    if (err.name == 'SequelizeValidationError') {
->>>>>>> 8361c4975cf1f7c993e8c90bd0402e1daa58aea0
 
       Loan.findById((req.params.id), {
         include: [{ all: true }],

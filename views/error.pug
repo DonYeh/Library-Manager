@@ -1,27 +1,10 @@
 block content
 
     if(errors)
-<<<<<<< HEAD
-        h2.errors Oooops an error has occured, one or more of your fields is invalid!
-        ul.errors
-            each error in errors
-                li
-                    =error.message 
-
-
-
-            //-  if error.length > 1
-            //-     each e in error
-            //-         li #{e.message}, #{e.parent}
-            //- else 
-            //-     li #{error.message}, #{error.parent}
-
-=======
         h2.error Oooops an error has occured, one or more of your fields is invalid!
         ul.error
             each error in errors
                 li=error.message
->>>>>>> 8361c4975cf1f7c993e8c90bd0402e1daa58aea0
     
 
 
