@@ -48,7 +48,7 @@ router.post('/new_patron', function(req, res, next) {
 		  errMessages[i] = err.errors[i].message;
 		}
   
-		// maintain the completed fields of the form
+		// re-render page with completed fields
 		res.render('new_patron', {
 		  title: 'Create New Patron',
 		  patronFirstName: req.body.first_name,

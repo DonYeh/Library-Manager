@@ -107,13 +107,10 @@ router.post('/new', function(req, res, next) {
       var bookdetails;
       var patrondetails;
 
-      Book.findAll({attributes: ['id', 'title'], order: 'title'}).then(function(results){
+      Book.findAll().then(function(results){
         bookdetails = results;
       }).then(
-        Patron.findAll({
-          attributes: ['id', 'first_name', 'last_name'],
-          order: 'last_name'
-        }).then(function(results){
+        Patron.findAll().then(function(results){
           patrondetails = results;
         }).then(function(){
           res.render('new_loan', {

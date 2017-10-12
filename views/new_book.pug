@@ -1,5 +1,5 @@
 
-extends ./layout
+extends layout
 block content
   h1 New Book
   form(action="/all_books/new", method="post")
@@ -44,4 +44,4 @@ block content
 
 
   if errors
-    include ./error
+    include error

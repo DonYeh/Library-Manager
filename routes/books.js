@@ -30,7 +30,7 @@ router.get('/', function (req, res, next) {
 // GET new books
 router.get('/new_book', function(req, res, next){
     res.render('new_book', {
-        title: 'Create New Book',
+        title: 'Create New Book'
         // book: Book.build()
     }); // end render
    if (err) return next(err);
@@ -38,7 +38,7 @@ router.get('/new_book', function(req, res, next){
 
 // POST new book
 router.post('/new', function(req, res, next) {
-  Book.create(req.body).then(function(){
+  Book.create(req.body).then(function(book){
     res.redirect('/all_books');
   }).catch(function(err){
     if (err.name === 'SequelizeValidationError') {
