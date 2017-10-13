@@ -3,60 +3,60 @@ extends ./layout
 block content
   h1 New Patron
   form(action='/all_patrons/new_patron', method="post")
-    - if (patronFirstName) {
+    if (patronFirstName) {
       p
         label(for='first_name') First Name
         input#first_name(type='text' name='first_name' value=patronFirstName)
-    - } else {
+    } else {
       p
         label(for='first_name') First Name
         input#first_name(type='text' name='first_name')
-    - }
-    - if (patronLastName) {
+    }
+    if (patronLastName) {
       p
         label(for='last_name') Last Name
         input#last_name(type='text' name='last_name' value=patronLastName)
-    - } else {
+    } else {
       p
         label(for='last_name') Last Name
         input#last_name(type='text' name='last_name')
-    - }
-    - if (patronAddress) {
+    }
+    if (patronAddress) {
       p
         label(for='address') Address
         input#address(type='text' name='address' value=patronAddress)
-    - } else {
+    } else {
       p
         label(for='address') Address
         input#address(type='text' name='address')
-    - }
-    - if (patronEmail) {
+    }
+    if (patronEmail) {
       p
         label(for='email') Email
         input#email(type='text' name='email' value=patronEmail)
-    - } else {
+    } else {
       p
         label(for='email') Email
         input#email(type='text' name='email')
-    - }
-    - if (patronLibraryId) {
+    }
+    if (patronLibraryId) {
       p
         label(for='library_id') Library ID
         input#library_id(type='text' name='library_id' value=patronLibraryId)
-    - } else {
+    } else {
       p
         label(for='library_id') Library ID
         input#library_id(type='text' name='library_id')
-    - }
-    - if (patronZipCode) {
+    }
+    if (patronZipCode) {
       p
         label(for='zip_code') Zip Code
         input#zip_code(type='text' name='zip_code' value=patronZipCode)
-    - } else {
+    } else {
       p
         label(for='zip_code') Zip Code
         input#zip_code(type='text' name='zip_code')
-    - }
+    }
     p
       input(type='submit' value='Create New Patron')
 
